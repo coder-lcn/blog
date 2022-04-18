@@ -65,9 +65,4 @@ module.exports = {
         [doc]: 'Show the copy button in the highlighted code area',
         [defaultValue]: true
     },
-    busuanzi: {
-        [type]: 'boolean',
-        [doc]: 'BuSuanZi site/page view counter\nhttps://busuanzi.ibruce.info',
-        [defaultValue]: false
-    }
 };

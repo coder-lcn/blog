@@ -15,7 +15,8 @@
     display: block;
 }
 
-.searchbox, .searchbox .searchbox-container {
+.searchbox,
+.searchbox .searchbox-container {
     position: fixed;
 }
 
@@ -81,7 +82,8 @@
     box-sizing: border-box;
 }
 
-@media screen and (max-width: 559px), screen and (max-height: 479px) {
+@media screen and (max-width: 559px),
+screen and (max-height: 479px) {
     .searchbox .searchbox-container {
         top: 0;
         left: 0;

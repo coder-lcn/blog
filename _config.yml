@@ -14,7 +14,7 @@ timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://leechar.github.io/
+url: https://blog-zeta-livid.vercel.app/
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -44,16 +44,16 @@ highlight:
   line_number: true
   auto_detect: false
   tab_replace:
-  
+
 # Home page setting
 # path: Root path for your blogs index page. (default = '')
 # per_page: Posts displayed per page. (0 = disable pagination)
 # order_by: Posts order. (Order by date descending by default)
 index_generator:
-  path: ''
+  path: ""
   per_page: 10
   order_by: -date
-  
+
 # Category & Tag
 default_category: uncategorized
 category_map:
@@ -88,7 +88,7 @@ theme: icarus
 #   type:
 deploy:
   type: git
-  repository: https://github.com/LeeChar/leechar.github.io.git
+  repository: https://github.com/coder-lcn/blog
 
 live2d:
   enable: false
