@@ -3,18 +3,15 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: LeeChar
-# subtitle: Just for fun !
-# description: Just for fun !
+title: 李昌南的技术博客
 keywords:
-author: LeeChar
-## TODO language
+author: 李昌南
 language: zh-CN
 timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://blog-zeta-livid.vercel.app/
+url: https://www.lichangnan.com/
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:

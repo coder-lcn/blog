@@ -5,11 +5,14 @@ date: 2019-11-2 19:47:48
 categories: 程序员
 tags: TypeScript
 ---
-  
-    
-## 配置TS环境到webpack
 
-### 使用ts-loader
+纯 ts 开发配置和前端框架配合 ts 的方法
+
+<!-- more -->
+
+## 配置 TS 环境到 webpack
+
+### 使用 ts-loader
 
 使用`ts`需要安装`ts`相关配置
 
@@ -32,17 +35,11 @@ npx tsc --init
     exclude: /node_modules/
 }
 ```
-  
-  
-  <!-- more -->
-  
-  
-
 
 将入口文件更改成`ts`文件
 
 ```javascript
-let a:string = 'hello';
+let a: string = "hello";
 console.log(a);
 ```
 
@@ -58,25 +55,31 @@ npm install @babel/preset-typescript
 
 ```json
 {
-    "presets": [
-       ["@babel/preset-env",{
-        "useBuiltIns":"usage",
-        "corejs":2 
-       }],
-       "@babel/preset-react",
-       ["@babel/preset-typescript",{
-           "allExtensions": true  
-       }]
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "useBuiltIns": "usage",
+        "corejs": 2
+      }
     ],
-    "plugins": [
-        ["@babel/plugin-proposal-decorators", { "legacy": true }],
-        ["@babel/plugin-proposal-class-properties",{"loose":true}],
-        "@babel/plugin-transform-runtime"
+    "@babel/preset-react",
+    [
+      "@babel/preset-typescript",
+      {
+        "allExtensions": true
+      }
     ]
+  ],
+  "plugins": [
+    ["@babel/plugin-proposal-decorators", { "legacy": true }],
+    ["@babel/plugin-proposal-class-properties", { "loose": true }],
+    "@babel/plugin-transform-runtime"
+  ]
 }
 ```
 
-## 配置ts+react环境
+## 配置 ts+react 环境
 
 安装`react`相关模块
 
@@ -85,31 +88,30 @@ npm i @babel/preset-react --save # 解析jsx语法
 npm i react @types/react @types/react-dom react react-dom typescript
 ```
 
-
 ```typescript
-import React from 'react';
-import ReactDOM from 'react-dom';
-const state = {number:0};
+import React from "react";
+import ReactDOM from "react-dom";
+const state = { number: 0 };
 type State = Readonly<typeof state>;
-class Counter extends React.Component<object,State>{
-    state:State = state
-    handleClick =()=>{
-        this.setState({number:this.state.number+1})
-    }
-    render(){
-        const {number} = this.state;
-        return (
-            <div>
-                <button onClick={this.handleClick}>点击</button>
-                {number}
-            </div>
-        )
-    }
+class Counter extends React.Component<object, State> {
+  state: State = state;
+  handleClick = () => {
+    this.setState({ number: this.state.number + 1 });
+  };
+  render() {
+    const { number } = this.state;
+    return (
+      <div>
+        <button onClick={this.handleClick}>点击</button>
+        {number}
+      </div>
+    );
+  }
 }
-ReactDOM.render(<Counter></Counter>,document.getElementById('root'));
+ReactDOM.render(<Counter></Counter>, document.getElementById("root"));
 ```
 
-## 配置ts+vue环境
+## 配置 ts+vue 环境
 
 安装`vue`所需要的模块
 
@@ -127,7 +129,7 @@ npm install vue vue-property-decorator
         loader:'ts-loader',
         options: {
             appendTsSuffixTo: [/\.vue$/],
-        }, 
+        },
     },
     exclude: /node_modules/
 }
@@ -136,7 +138,7 @@ npm install vue vue-property-decorator
 使用`vue-loader`插件
 
 ```javascript
-const VueLoaderPlugin = require('vue-loader/lib/plugin');
+const VueLoaderPlugin = require("vue-loader/lib/plugin");
 new VueLoaderPlugin();
 ```
 
@@ -161,26 +163,26 @@ declare module '*.vue' {
 `index.tsx`文件
 
 ```javascript
-import Vue from 'vue';
-import App from './App.vue';
+import Vue from "vue";
+import App from "./App.vue";
 let vm = new Vue({
-    render:h=>h(App)
-}).$mount('#root')
+  render: (h) => h(App),
+}).$mount("#root");
 ```
 
 `App.vue文件`
 
 ```html
 <template>
-    <div>
-        <div v-for="(todo,index) in todos" :key="index">{{todo}}</div>
-    </div>
+  <div>
+    <div v-for="(todo,index) in todos" :key="index">{{todo}}</div>
+  </div>
 </template>
 <script lang="ts">
-import {Component,Vue} from 'vue-property-decorator';
-@Component
-export default class Todo extends Vue{
-    public todos = ['香蕉','苹果','橘子']
-}
+  import { Component, Vue } from "vue-property-decorator";
+  @Component
+  export default class Todo extends Vue {
+    public todos = ["香蕉", "苹果", "橘子"];
+  }
 </script>
 ```

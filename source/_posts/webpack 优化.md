@@ -6,9 +6,7 @@ categories: 程序员
 tags: webpack
 ---
 
-上一章节我们已经掌握了 webpack 常见的所有配置
-
-这一节我们来看看如何实现 webpack 中的优化，我们先来编写最基本的 webpack 配置，然后依次实现各种优化！
+了解 webpack 常见的配置之后，再来看看如何实现 webpack 中的优化
 
 <!-- more -->
 

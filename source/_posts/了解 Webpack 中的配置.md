@@ -1,5 +1,5 @@
 ---
-title: Webpack 中必须掌握的配置
+title: 了解 Webpack 中的配置
 toc: true
 date: 2019-11-2 19:30:04
 categories: 程序员
