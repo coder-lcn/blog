@@ -72,8 +72,8 @@ search:
 # http://ppoffice.github.io/hexo-theme-icarus/categories/Configuration/Comment-Plugins
 comment:
   type: gitalk
-  client_id: 761bec8374ab1ed7107f
-  client_secret: 6e2ee59812e706b28931b5e47e5b7a321ce2b06a
+  client_id: 11c2db5be2971d1b9b8d
+  client_secret: fbd2787dd692998b8945e04dcda2f896fd2d26d8
   repo: blog
   owner: coder-lcn
   id: location.pathname
