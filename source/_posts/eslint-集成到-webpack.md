@@ -2,7 +2,7 @@
 title: eslint 集成到 webpack
 toc: true
 date: 2019-10-19 22:22:01
-categories: 程序员
+categories: 前端
 tags:
   - node
   - webpack

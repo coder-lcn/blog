@@ -2,7 +2,7 @@
 title: 了解 Webpack 中的配置
 toc: true
 date: 2019-11-2 19:30:04
-categories: 程序员
+categories: 前端
 tags: webpack
 ---
 

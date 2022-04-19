@@ -2,7 +2,7 @@
 title: TypeScript 环境
 toc: true
 date: 2019-11-2 19:47:48
-categories: 程序员
+categories: 前端
 tags: TypeScript
 ---
 

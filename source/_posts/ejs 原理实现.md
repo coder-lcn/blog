@@ -1,7 +1,7 @@
 ---
 title: ejs 原理实现
 date: 2019-10-30 04:43:05
-categories: 程序员
+categories: 前端
 tags: JavaScript
 ---
 
