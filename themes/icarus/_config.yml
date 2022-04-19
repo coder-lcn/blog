@@ -72,12 +72,12 @@ search:
 # http://ppoffice.github.io/hexo-theme-icarus/categories/Configuration/Comment-Plugins
 comment:
   type: gitalk
-  client_id: client_id
-  client_secret: client_secret
-  repo: https://github.com/coder-lcn/blog.git
+  client_id: 761bec8374ab1ed7107f
+  client_secret: 6e2ee59812e706b28931b5e47e5b7a321ce2b06a
+  repo: blog
   owner: coder-lcn
-  admin:
-    - coder-lcn
+  id: location.pathname
+  admin: coder-lcn
   per_page: 20 # 可选填
   language: zh-CN # 可选填
 
