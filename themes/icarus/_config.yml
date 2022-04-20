@@ -1,5 +1,8 @@
 # Custom Configuration
 
+author: 李昌南
+url: https://www.lichangnan.com/
+
 # Version of the Icarus theme that is currently used
 version: 2.3.0
 # Path or URL to the website's icon
@@ -109,9 +112,8 @@ comment:
 
 # Share plugin settings
 # http://ppoffice.github.io/hexo-theme-icarus/categories/Configuration/Share-Plugins
-# share:
-#     # Share plugin name
-#     type: sharejs
+share:
+  type: sharejs
 # Sidebar settings.
 # Please be noted that a sidebar is only visible when it has at least one widget
 sidebar:
