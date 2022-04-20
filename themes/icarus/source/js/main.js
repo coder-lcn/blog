@@ -1,4 +1,4 @@
-(function($){
+(function ($) {
     $('.article img:not(".not-gallery-item")').each(function () {
         // wrap images with link and add caption if possible
         if ($(this).parent('a').length === 0) {
@@ -9,7 +9,7 @@
         }
     });
 
-    if (typeof(moment) === 'function') {
+    if (typeof (moment) === 'function') {
         $('.article-meta time').each(function () {
             $(this).text(moment($(this).attr('datetime')).fromNow());
         });
@@ -30,7 +30,7 @@
 
     var $toc = $('#toc');
     if ($toc.length > 0) {
-    var $mask = $('<div>');
+        var $mask = $('<div>');
         $mask.attr('id', 'toc-mask');
 
         $('body').append($mask);
@@ -44,4 +44,16 @@
         $mask.on('click', toggleToc);
         $('.navbar-main .catalogue').on('click', toggleToc);
     }
+
+    $('.donate-container .card-content').on('click', function () {
+        const donate = this.querySelector('.buttons.is-centered');
+        donate.style.overflow = "hidden";
+        const height = donate.clientHeight;
+        donate.style.height = height ? "0px" : '38.5px';
+        donate.ontransitionend = () => donate.style.overflow = height ? "hidden" : "initial";
+    });
+
+    $('.donate-container .card-content a').on('click', e => {
+        e.stopPropagation();
+    })
 })(jQuery);
