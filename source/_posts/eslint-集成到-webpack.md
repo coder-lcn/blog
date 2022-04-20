@@ -2,10 +2,10 @@
 title: eslint 集成到 webpack
 toc: true
 date: 2019-10-19 22:22:01
-categories: 前端
-tags:
-  - node
-  - webpack
+categories:
+  - 前端
+  - eslint
+tags: NodeJS
 ---
 
 eslint 的语法校验功能，已经成了很多框架为了做好规范的必备工具，来看看它在 webpack 中是怎么用的。

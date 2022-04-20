@@ -2,7 +2,9 @@
 title: Google reCAPTCHA
 date: 2022-04-19 09:47:21
 tags: Google Product
-categories: 互联网产品
+categories:
+  - 互联网产品
+  - Google Product
 ---
 
 单独说 Google reCAPTCHA，可能鲜有人知道具体是什么。但是见过下面这个验证的，大概知道是啥了。

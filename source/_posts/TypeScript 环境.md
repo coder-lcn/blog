@@ -1,8 +1,10 @@
 ---
-title: TypeScript 环境
+title: TypeScript 环境配置
 toc: true
 date: 2019-11-2 19:47:48
-categories: 前端
+categories:
+  - 前端
+  - TypeScript
 tags: TypeScript
 ---
 

@@ -1,8 +1,10 @@
 ---
 title: ejs 原理实现
 date: 2019-10-30 04:43:05
-categories: 前端
-tags: JavaScript
+categories:
+  - Node
+  - 模版引擎
+tags: 模板引擎
 ---
 
 模板引擎是前端框架都会实现的技术，作为最早在前端框架中流行起来的模板引起，它的实现原理是怎样的呢？
