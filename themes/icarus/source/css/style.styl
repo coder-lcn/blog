@@ -38,9 +38,6 @@ body, button, input, select, textarea
         max-width: screen-desktop - 2 * gap
         width: screen-desktop - 2 * gap
 
-.section
-    overflow: hidden
-
 @media screen and (max-width: screen-tablet - 1)
     .section
         padding: 1.5rem 1rem
@@ -228,10 +225,21 @@ img.thumbnail
             display: block
     &:first-child:not(:last-child)
         .qrcode
-            left: -0.75rem
+            left: auto;
+            right: 0;
     &:last-child:not(:first-child)
         .qrcode
-            right: -0.75rem
+            left: 0;
+            right: auto;
+
+    @media screen and (max-width: 768px)
+        position: initial;
+
+        &:first-child:not(:last-child) .qrcode,
+        &:last-child:not(:first-child) .qrcode
+            left: 50%;
+            right: auto;
+            transform: translate(-50%, -30px);
 
 @media screen and (max-width: screen-tablet - 1)
     #toc
