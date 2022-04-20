@@ -386,7 +386,7 @@ figure.highlight
         background: transparent
 
     table
-        width: 100%
+        width: auto
 
     pre
         padding: 0
@@ -438,8 +438,13 @@ figure.highlight
         right: 0
         color: white
         background: rgba(0, 0, 0, 0.5)
+
     &:hover .copy
         display: block
+        
+    @media screen and (max-width: 768px)
+        .copy
+            display: none !important
 
 /* ---------------------------------
  *        Fix Gist Snippet
