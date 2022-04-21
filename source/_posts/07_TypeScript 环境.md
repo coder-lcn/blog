@@ -1,7 +1,7 @@
 ---
 title: TypeScript 环境配置
 toc: true
-date: 2019-11-2 19:47:48
+date: 2020-01-02 19:47:48
 categories:
   - 前端
   - TypeScript
