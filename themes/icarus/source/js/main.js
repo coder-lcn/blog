@@ -45,6 +45,7 @@
         $('.navbar-main .catalogue').on('click', toggleToc);
     }
 
+    // 赞助二维码的显示隐藏-------------
     $('.donate-container .card-content').on('click', function () {
         const donate = this.querySelector('.buttons.is-centered');
         donate.style.overflow = "hidden";
@@ -55,5 +56,16 @@
 
     $('.donate-container .card-content a').on('click', e => {
         e.stopPropagation();
-    })
+    });
+    // --------------------
+
+    // 全局搜索快捷键---------------
+    window.onkeydown = (e) => {
+        // command + k
+        if (e.metaKey && e.key === 'k') {
+            const searchElement = document.querySelector('a.navbar-item.search');
+            searchElement && searchElement.click();
+        }
+    }
+    // --------------
 })(jQuery);

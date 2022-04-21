@@ -163,18 +163,6 @@ widgets:
     type: toc
     # Where should the widget be placed, left or right
     position: left
-  # -
-  #     # Widget name
-  #     type: links
-  #     # Where should the widget be placed, left or right
-  #     position: left
-
-  #     # Links to be shown in the links widget
-  #     links:
-  #         朱双印个人日志: 'http://www.zsythink.net'
-  #         小鱼周凌宇: 'http://zhoulingyu.com'
-  #         陈敏: 'https://www.chenmin.info'
-  #         斑马のCODE_HOME: 'http://xunyajie.com/'
   - # Widget name
     type: archive
     # Where should the widget be placed, left or right
