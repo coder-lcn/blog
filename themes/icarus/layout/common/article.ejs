@@ -38,7 +38,7 @@
                 <span class="level-item has-text-grey">
                     <% const words = word_count(post._content); %>
                     <% const time = duration((words / 150.0) * 60, 'seconds') %>
-                    <%= `${ time.locale(get_config('language', 'en')).humanize() } ${ __('article.read')} (${ __('article.about') } ${ words } ${ __('article.words') })` %>
+                    <%= `${ time.locale(get_config('language')).humanize() } ${ __('article.read')} (${ __('article.about') } ${ words } ${ __('article.words') })` %>
                 </span>
                 <% } %>
 
@@ -78,7 +78,6 @@
                 <li><strong>本文标题：</strong><a href="<%= post.permalink %>"><%= page.title %></a></li>
                 <li><strong>本文作者：</strong><a href="<%= theme.url %>"><%= theme.author %></a></li>
                 <li><strong>本文链接：</strong><a href="<%= post.permalink %>"><%= post.permalink %></a></li>
-                <li><strong>发布时间：</strong><%= post.date.format("YYYY-MM-DD") %></li>
                 <li><strong>版权声明：</strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！
                 </li>
             </ul>
