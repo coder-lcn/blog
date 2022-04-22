@@ -1,20 +1,4 @@
-# nothing
-
-## 启动
-
-使用 cnpm 安装依赖
-
-```shell
-npm install -g cnpm --registry=https://registry.npm.taobao.org
-cnpm i -g gifsicle
-cnpm install
-```
-
-运行
-
-```shell
-npm start
-```
+# 李昌南的技术博客
 
 ## TODO
 
