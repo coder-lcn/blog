@@ -1,3 +1,5 @@
+moment.updateLocale = () => { }
+
 (function ($) {
     $('.article img:not(".not-gallery-item")').each(function () {
         // wrap images with link and add caption if possible

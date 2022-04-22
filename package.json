@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "start": "hexo s",
+    "prestart": "node ./scripts/reDefine.js",
     "build": "hexo g"
   },
   "hexo": {
