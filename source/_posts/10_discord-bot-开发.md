@@ -7,12 +7,11 @@ categories:
 tags: Discord
 ---
 
-本文围绕 `discord.js` 的 v3 版本来为 discord 的社区编写机器人脚本。
+首先需要先知道的是，对于 discord 来说，bot 也是一个用户。也就意味着要使用 bot 开发之前，需要先登录上去。
 
 <!-- more -->
 
-首先需要先知道的是，对于 discord 来说，bot 也是一个用户。也就意味着要使用 bot 开发之前，需要先登录上去。
-
+> 本文围绕 `discord.js` 的 v3 版本来编写机器人脚本。
 > discord 机器人的开发是比较简单有趣的，但是过程中还是会遇到一些限制。特别是从 v2 过渡期到 v3 时。
 > 参考https://discordjs.guide/additional-info/changes-in-v13.html#before-you-start
 

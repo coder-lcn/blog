@@ -70,4 +70,14 @@ moment.updateLocale = () => { }
         }
     }
     // --------------
+
+    // 在 Github 上编辑此页---------------
+    $('.edit-article').on('click', () => {
+        const paths = location.pathname.split('/');
+        paths.pop();
+        const fileName = paths.pop();
+        const editUrl = `https://github.com/coder-lcn/blog/edit/main/source/_posts/${fileName}.md`;
+        window.open(editUrl, '_blank');
+    })
+    // ---------------
 })(jQuery);

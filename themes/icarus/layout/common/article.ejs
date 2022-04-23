@@ -74,6 +74,7 @@
         </div>
 
         <% if (!index && post.layout === 'post' && post.copyright !== false) { %>
+            <div class="edit-article">在 GitHub 上编辑此页</div>
             <ul class="post-copyright">
                 <li><strong>本文标题：</strong><a href="<%= post.permalink %>"><%= page.title %></a></li>
                 <li><strong>本文作者：</strong><a href="<%= theme.url %>"><%= theme.author %></a></li>
