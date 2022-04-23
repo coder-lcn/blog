@@ -58,7 +58,7 @@ navbar:
 article:
   # Code highlight theme
   # https://github.com/highlightjs/highlight.js/tree/master/src/styles
-  highlight: atom-one-light
+  highlight: stackoverflow-dark
   #    highlight: atom-one-light
   # Whether to show article thumbnail images
   thumbnail: true
