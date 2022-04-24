@@ -35,7 +35,7 @@ tags: Discord
 
 ### Build-A-Bot
 
-![WeChatc43c25da9f5c3a54b7456174174e43c3](https://tva1.sinaimg.cn/large/e6c9d24ely1h1l1bqb3gjj21gv0cddgy.jpg)
+![WeChatc43c25da9f5c3a54b7456174174e43c3](/images/e6c9d24ely1h1l1bqb3gjj21gv0cddgy.jpg)
 
 
 
