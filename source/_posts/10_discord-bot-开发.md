@@ -7,7 +7,11 @@ categories:
 tags: Discord
 ---
 
+
+
 首先需要先知道的是，对于 discord 来说，bot 也是一个用户。也就意味着要使用 bot 开发之前，需要先登录上去。
+
+
 
 <!-- more -->
 
@@ -15,15 +19,25 @@ tags: Discord
 > discord 机器人的开发是比较简单有趣的，但是过程中还是会遇到一些限制。特别是从 v2 过渡期到 v3 时。
 > 参考https://discordjs.guide/additional-info/changes-in-v13.html#before-you-start
 
+
+
+
+
 ## 创建一个机器人账户
+
+
 
 ### 创建应用
 
 前往 https://discord.com/developers/applications 页面，点击`New Application`创建一个应用。
 
+
+
 ### Build-A-Bot
 
-![](/images/WeChatc43c25da9f5c3a54b7456174174e43c3.png)
+![WeChatc43c25da9f5c3a54b7456174174e43c3](https://tva1.sinaimg.cn/large/e6c9d24ely1h1l1bqb3gjj21gv0cddgy.jpg)
+
+
 
 ## hello world
 
