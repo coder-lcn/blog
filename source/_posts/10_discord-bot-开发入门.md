@@ -56,7 +56,7 @@ client.login("token");
 
 ```js
 const channel = client.channels.cache.get(频道id);
-channel && channel.message.sned("hello world");
+channel && channel.message.send("hello world");
 ```
 
 我们需要先知道这个频道 id 是多少才可以，然而机器人只是用户，要想知道就必须处在这个频道所在的社区里。
