@@ -19,7 +19,11 @@ tags: Discord
 
 ### 创建应用
 
-前往 https://discord.com/developers/applications 页面创建一个应用。
+前往 https://discord.com/developers/applications 页面，点击`New Application`创建一个应用。
+
+### Build-A-Bot
+
+![](/images/WeChatc43c25da9f5c3a54b7456174174e43c3.png)
 
 ## hello world
 
