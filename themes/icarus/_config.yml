@@ -61,7 +61,7 @@ article:
   highlight: stackoverflow-dark
   #    highlight: atom-one-light
   # Whether to show article thumbnail images
-  thumbnail: true
+  # thumbnail: true
   # Whether to show estimate article reading time
   readtime: true
 

@@ -4,7 +4,8 @@ function buildToc(toc) {
     if (toc.hasOwnProperty('id') && toc.hasOwnProperty('index') && toc.hasOwnProperty('text')) {
         result += `<li>
         <a class="is-flex" href="#${toc.id}">
-        <span class="has-mr-6">${toc.index}</span>
+        <!-- 隐藏文章标题的层级序号 -->
+        <!-- <span class="has-mr-6">${toc.index}</span> -->
         <span>${toc.text}</span>
         </a>`;
     }
