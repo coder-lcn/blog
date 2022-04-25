@@ -19,3 +19,9 @@ tags: 时间工具
 moment().startOf("month").format("YYYY-MM-DD hh:mm");
 moment().endOf("month").format("YYYY-MM-DD hh:mm");
 ```
+
+### 获取月份的英文描述名称
+
+```js
+moment().subtract(1, "month").startOf("month").format("MMMM");
+```
