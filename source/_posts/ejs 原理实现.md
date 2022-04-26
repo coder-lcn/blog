@@ -4,7 +4,9 @@ date: 2019-10-30 04:43:05
 categories:
   - Node
   - 模版引擎
-tags: 模板引擎
+tags: 
+  - 模板引擎
+  - 正则表达式
 ---
 
 模板引擎是前端框架都会实现的技术，作为最早在前端框架中流行起来的模板引起，它的实现原理是怎样的呢？
@@ -95,16 +97,25 @@ function render(template, obj) {
   html += "with(obj){\r\n";
   html += "str += `";
 
-  let content = template.replace(/<%([\s\S]+?)%>/g, (souceCode, targetCode) => {
+  let content = template.replace(/<%(?!=)([\s\S|]+?)%>/g, (souceCode, targetCode) => {
     return "`\r\n" + targetCode + "\r\nstr+=`";
   });
 
-  template = template.replace(/<%=([\s\S]+?)%>/g, (souceCode, targetCode) => {
+  content = content.replace(/<%=([\s\S]+?)%>/g, (souceCode, targetCode) => {
     return "${" + targetCode + "}";
   });
 
   let result = html + content + "`}\r\n return str";
   let fn = new Function("obj", result);
+
   return fn(obj);
 }
 ```
+
+### 检验效果
+
+<iframe height="600" style="width: 100%;" scrolling="no" title="Untitled" src="https://codepen.io/lichangnan-programmer/embed/KKZjvRJ?default-tab=js%2Cresult&editable=true" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/lichangnan-programmer/pen/KKZjvRJ">
+  Untitled</a> by 李昌南 (<a href="https://codepen.io/lichangnan-programmer">@lichangnan-programmer</a>)
+  on <a href="https://codepen.io">CodePen</a>.
+</iframe>
