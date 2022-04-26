@@ -80,4 +80,14 @@ moment.updateLocale = () => { }
         window.open(editUrl, '_blank');
     })
     // ---------------
+
+    // 搜索框出现时，阻止页面滚动
+    const target = document.getElementById('toc-mask');
+    if (target) {
+        const observer = new MutationObserver(() => {
+            const isShow = target.classList.contains('is-active');
+            document.documentElement.style.overflowY = isShow ? 'hidden' : 'scroll';
+        });
+        observer.observe(target, { attributes: true })
+    }
 })(jQuery);

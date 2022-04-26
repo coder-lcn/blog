@@ -20,7 +20,7 @@ widget:
   tag_cloud: "标签云"
   catalogue: "文章目录"
 article:
-  more: "阅读更多..."
+  more: "阅读更多"
   comments: "评论"
   read: "读完"
   about: "大约"

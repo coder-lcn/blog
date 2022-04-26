@@ -63,8 +63,11 @@ body, button, input, select, textarea
 .card
     border-radius: 4px
     box-shadow: 0 4px 10px rgba(0,0,0,0.05), 0 0 1px rgba(0,0,0,0.1)
+    &.toc
+        overflow: auto
     &.donate-container
         cursor: pointer
+        overflow: initial !important
         
         .buttons.is-centered {
             transition: all 0.2s ease-in-out
@@ -74,7 +77,6 @@ body, button, input, select, textarea
         margin-top: 1.5rem
         margin-bottom: 1.5rem
         max-height: calc(100vh - 1.5rem)
-        // overflow-y: auto;
     &.card-transparent
         box-shadow: none
         background: transparent
@@ -94,6 +96,7 @@ img.thumbnail
         max-height: 2.55rem
 
 .navbar-main
+    transition: none !important
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05)
     .navbar-menu,
     .navbar-start,
@@ -251,7 +254,7 @@ img.thumbnail
         bottom: 0
         top: 0
         margin: auto
-        width: 90vw
+        width: 80vw
         z-index: 100
         max-height: calc(100vh - 10rem)
         overflow: auto
