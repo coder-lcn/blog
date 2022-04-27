@@ -90,4 +90,14 @@ moment.updateLocale = () => { }
         });
         observer.observe(target, { attributes: true })
     }
+    // ----------------
+
+
+    // 首页卡片单击，进入文章详情--------------------------
+    const showDetail = function () {
+        location.href = this.dataset.url;
+    }
+
+    $('.card.index').on('click', showDetail);
+    // --------------------------
 })(jQuery);

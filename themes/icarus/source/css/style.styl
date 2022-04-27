@@ -63,6 +63,10 @@ body, button, input, select, textarea
 .card
     border-radius: 4px
     box-shadow: 0 4px 10px rgba(0,0,0,0.05), 0 0 1px rgba(0,0,0,0.1)
+    &.index
+        cursor: pointer
+        &:hover
+            transform: scale(1.03)
     &.toc
         overflow: auto
     &.donate-container
@@ -372,6 +376,8 @@ h1
             font-size: 0.6em
     a
         font-size: 0.6em
+    &.index
+        font-size: 1.6em !important
 h2
     font-size: 2.4em
 h3
@@ -538,3 +544,11 @@ img
         p
             margin-top: 0;
             margin-bottom: 0 !important
+
+
+.card-content
+    &.index
+        cursor: pointer
+        &:hover
+            transform: scale(1.1)
+
