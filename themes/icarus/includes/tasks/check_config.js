@@ -27,14 +27,16 @@ try {
     validator.validate(config);
 } catch (e) {
     if (e instanceof errors.ConfigError) {
-        logger.error(e.message);
-        if (e.hasOwnProperty('spec')) {
-            logger.error('The specification of this configuration is:');
-            logger.error(util.inspect(e.spec));
-        }
-        if (e.hasOwnProperty('config')) {
-            logger.error('Configuration value is:');
-            logger.error(util.inspect(e.config));
+        if (e.message.indexOf('social_links') === -1) {
+            logger.error(e.message);
+            if (e.hasOwnProperty('spec')) {
+                logger.error('The specification of this configuration is:');
+                logger.error(util.inspect(e.spec));
+            }
+            if (e.hasOwnProperty('config')) {
+                logger.error('Configuration value is:');
+                logger.error(util.inspect(e.config));
+            }
         }
     } else if (e instanceof errors.VersionError) {
         logger.error(e.message);
