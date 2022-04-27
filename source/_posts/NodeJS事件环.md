@@ -1,12 +1,13 @@
 ---
-title: 事件环
-date: 2022-04-27 13:12:52
+title: NodeJS事件环
+date: 2022-04-27 14:12:52
 categories:
-  - JavaScript
-tags: 事件处理
+  - NodeJS
+  - 事件处理
+tags: 事件
 ---
 
-JavaScript、NodeJs 在浏览器、node环境里的代码执行顺序。
+<div></div>
 
 <!-- more -->
 
@@ -16,50 +17,8 @@ JavaScript、NodeJs 在浏览器、node环境里的代码执行顺序。
 
 ### 分类
 
-- 宏任务：script标签、setImmediate（比定时器快）、定时器、ui渲染、MessageChannel
-- 微任务：promise.then、MutationObserver、nextTick（node中的方法，比then快）
-
-## 浏览器中的事件环
-
-浏览器中，默认当前栈执行完毕后会清空微任务 ，微任务清空后 取第一个宏任务（定时器）执行，执行的过程中，会在注册一些微任务，在执行下一个宏任务之前在清空 一次微任务，再去执行下一个宏任务，形成事件环；如下图：
-
-
-
-![浏览器事件环.jpg](/images/1562486337236-bf5ccc49-6d56-4d71-a9e2-10ee955a6484.png)
-
-
-### 思考
-```javascript
-setTimeout(()=>{
-  Promise.resolve().then(()=>{
-    console.log('settimeout - then1');
-    setTimeout(()=>{
-      console.log('last timeout')
-    })
-  })
-  console.log(1);
-})
-
-setTimeout(() => {
-  console.log(2);
-});
-
-setTimeout(() => {
-  console.log(3);
-});
-
-Promise.resolve().then(()=>{
-  console.log('then');
-});
-
-Promise.resolve().then(()=>{
-  console.log('then');
-});
-
-Promise.resolve().then(()=>{
-  console.log('then');
-});
-```
+- 宏任务：setImmediate（比定时器快）、定时器
+- 微任务：promise.then、、nextTick（node中的方法，比then快）
 
 ## Node中的事件环
 
