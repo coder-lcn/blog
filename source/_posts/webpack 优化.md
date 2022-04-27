@@ -120,7 +120,7 @@ npm install image-webpack-loader --save-dev
 
 ```javascript
 {
-	loader: "image-webpack-loader",
+  loader: "image-webpack-loader",
   options: {
     mozjpeg: {
       progressive: true,
