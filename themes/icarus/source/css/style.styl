@@ -63,6 +63,11 @@ body, button, input, select, textarea
 .card
     border-radius: 4px
     box-shadow: 0 4px 10px rgba(0,0,0,0.05), 0 0 1px rgba(0,0,0,0.1)
+    &.recent
+        .content > div
+            float: right
+    &.categories
+        overflow: auto
     &.index
         cursor: pointer
         &:hover
@@ -285,6 +290,8 @@ img.thumbnail
 
 .is-size-7
     font-size: 0.85rem !important
+
+
 
 .is-7by1
     padding-top: 42.8%
@@ -552,3 +559,6 @@ img
         &:hover
             transform: scale(1.1)
 
+
+p.is-size-7
+     margin-top: 0

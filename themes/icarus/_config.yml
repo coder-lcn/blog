@@ -61,7 +61,7 @@ article:
   highlight: stackoverflow-dark
   #    highlight: atom-one-light
   # Whether to show article thumbnail images
-  # thumbnail: true
+  thumbnail: false
   # Whether to show estimate article reading time
   readtime: true
 
@@ -133,7 +133,7 @@ widgets:
     # Title of the author to be shown in the profile widget
     # author_title: Just for fun
     # Author's current location to be shown in the profile widget
-    # location:  Beijing, China
+    location:  HangZhou, China
     # Path or URL to the avatar to be shown in the profile widget
     avatar: /images/avatar.png
     # Email address for the Gravatar to be shown in the profile widget
@@ -143,22 +143,22 @@ widgets:
     # Path or URL for the follow button
     # follow_link: 'https://github.com/thank037'
     # Links to be shown on the bottom of the profile widget
-  #     social_links:
-  #         Github:
-  #             icon: fab fa-github
-  #             url: 'https://github.com/thank037'
-  #         Facebook:
-  #             icon: fab fa-facebook
-  #             url: 'http://facebook.com'
-  #         Twitter:
-  #             icon: fab fa-twitter
-  #             url: 'http://twitter.com'
-  #         Dribbble:
-  #             icon: fab fa-dribbble
-  #             url: 'http://dribbble.com'
-  #         RSS:
-  #             icon: fas fa-rss
-  #             url: /
+    social_links:
+        Github:
+            icon: fab fa-github
+            url: https://github.com/coder-lcn
+        Juejin:
+            customIcon: https://lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web/static/favicons/favicon-16x16.png
+            url: https://juejin.cn/user/4231379697012135
+        # Facebook:
+        #     icon: fab fa-facebook
+        #     url: http://facebook.com
+        # Twitter:
+        #     icon: fab fa-twitter
+        #     url: http://twitter.com
+        # RSS:
+        #     icon: fas fa-rss
+        #     url: /
   - # Widget name
     type: toc
     # Where should the widget be placed, left or right
@@ -167,21 +167,20 @@ widgets:
     type: archive
     # Where should the widget be placed, left or right
     position: right
-  # -
-  #     # Widget name
-  #     type: category
-  #     # Where should the widget be placed, left or right
-  #     position: left
+  - # Widget name
+    type: category
+    # Where should the widget be placed, left or right
+    position: left
   # -
   #     # Widget name
   #     type: tagcloud
   #     # Where should the widget be placed, left or right
   #     position: left
-  # -
-  #     # Widget name
-  #     type: recent_posts
-  #     # Where should the widget be placed, left or right
-  #     position: right
+  -
+      # Widget name
+      type: recent_posts
+      # Where should the widget be placed, left or right
+      position: right
 #    -
 #        # Widget name 小挂件: 归档
 #        type: archive
