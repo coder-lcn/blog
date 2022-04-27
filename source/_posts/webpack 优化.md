@@ -393,7 +393,7 @@ entry:{
 
 ```javascript
 optimization: {
-	splitChunks: {
+  splitChunks: {
     chunks: 'async', // 分割异步模块。可选参数：inital 同步、async 异步、all 所有
     minSize: 30000, // 分割的文件最小大小，单位：字节
     maxSize: 0,
