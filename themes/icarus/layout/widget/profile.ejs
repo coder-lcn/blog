@@ -20,8 +20,8 @@
                             alt="<%= get_config_from_obj(widget, 'author') %>">
                     </figure>
                     <% } else { %>
-                    <img class="image is-128x128 has-mb-6" src="<%= avatar() %>"
-                        alt="<%= get_config_from_obj(widget, 'author') %>" style="border-radius: 50%">
+                    <img class="image is-128x128 has-mb-6 logo" src="<%= avatar() %>"
+                        alt="<%= get_config_from_obj(widget, 'author') %>">
                     <% } %>
                     <% if (get_config_from_obj(widget, 'author')) { %>
                     <p class="is-size-4 is-block">
@@ -87,13 +87,13 @@
         <div class="level is-mobile">
             <% for (let name in socialLinks) {
                     let link = socialLinks[name]; %>
-            <a class="level-item button is-white is-marginless" target="_blank"
+            <a class="level-item button is-white is-marginless" target="_blank"maximum-scale=1
                 title="<%= name %>" href="<%= url_for(typeof(link) === 'string' ? link : link.url) %>">
                 <% if (typeof(link) === 'string') { %>
                 <%= name %>
                 <% } else { %>
                     <% if (link.customIcon) { %>
-                        <img src="<%= link.customIcon %>" />
+                        <img src="<%= link.customIcon %>" title="自定义图标" />
                      <% } else { %>
                         <i class="<%= link.icon %>"></i>
                      <% } %>

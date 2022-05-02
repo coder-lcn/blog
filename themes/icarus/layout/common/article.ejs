@@ -17,7 +17,7 @@
                 <% if (index) { %>
                 <time class="level-item has-text-grey" datetime="<%= date_xml(post.date) %>"><%= date(post.date) %></time>
                 <% } else { %>
-                <span style="color: #7a7a7a !important;">写于<%= full_date(post.date) %>&nbsp;&nbsp;&nbsp;</span>
+                <span>写于<%= full_date(post.date) %>&nbsp;&nbsp;&nbsp;</span>
                 <% } %>
 
                 <!--<span style="color: #7a7a7a !important;"><%= full_date(post.date) %>&nbsp;&nbsp;&nbsp;</span>-->
@@ -123,7 +123,7 @@
 <div class="card donate-container">
     <div class="card-content">
         <p class="menu-label has-text-centered"><%= __('donate.title') %></p>
-        <div class="buttons is-centered" style="height: 0; overflow: hidden;">
+        <div class="buttons is-centered donate-controller">
             <% for (let service of services) {
                 const type = get_config_from_obj(service, 'type');
                 if (type !== null) { %>
