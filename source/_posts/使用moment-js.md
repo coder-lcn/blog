@@ -4,7 +4,7 @@ date: 2022-04-25 15:48:52
 categories:
   - 前端
   - 常用工具
-tags: 时间工具
+tags: 工具
 ---
 
 <div></div>
