@@ -63,10 +63,20 @@ moment.updateLocale = () => { }
 
     // 全局搜索快捷键---------------
     window.onkeydown = (e) => {
-        // command + k
-        if (e.metaKey && e.key === 'k') {
+        const action = () => {
             const searchElement = document.querySelector('a.navbar-item.search');
             searchElement && searchElement.click();
+        }
+
+        // command + k
+        if (e.metaKey && e.key === 'k') {
+            e.preventDefault();
+            action();
+        }
+
+        if (e.ctrlKey && e.key === 'k') {
+            e.preventDefault();
+            action();
         }
     }
     // --------------
