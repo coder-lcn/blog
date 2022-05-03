@@ -81,9 +81,10 @@ moment.updateLocale = () => { }
     })
     // ---------------
 
-    // 搜索框出现时，阻止页面滚动
+    // 在移动端，当搜索框出现时，阻止页面滚动
     const target = document.getElementById('toc-mask');
-    if (target) {
+    const isMobile = /(iPhone|iPad|iPod|iOS|Android)/i.test(navigator.userAgent)
+    if (target && isMobile === true) {
         const observer = new MutationObserver(() => {
             const isShow = target.classList.contains('is-active');
             document.documentElement.style.overflowY = isShow ? 'hidden' : 'scroll';
