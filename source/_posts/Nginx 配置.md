@@ -12,11 +12,9 @@ tags: nginx
 
 <!-- more -->
 
-
-
 ## 默认配置
 
-```yml
+```nginx
 user nginx;
 worker_processes 1;
 
@@ -54,7 +52,8 @@ http {
 ```
 
 ## 反向代理
-```yml
+
+```nginx
 server {
   location ^~ /api/ {
     proxy_pass http://127.0.0.1:3001;
@@ -63,7 +62,8 @@ server {
 ```
 
 ## 配置 https
-```yml
+
+```nginx
 server {
   # 开启 https 访问端口
   listen 443 ssl;
@@ -71,5 +71,13 @@ server {
   # 引用证书
   ssl_certificate /etc/nginx/cert/5166600_yhejiu.com.pem;
   ssl_certificate_key /etc/nginx/cert/5166600_yhejiu.com.key;
+}
+```
+
+## 页面刷新 404
+
+```nginx
+location / {
+  try_files  $uri $uri/ /index.html;
 }
 ```
