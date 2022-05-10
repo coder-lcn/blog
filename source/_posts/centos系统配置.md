@@ -18,3 +18,11 @@ tags: vmware
  - `cd /etc/sysconfig/network-scripts/`
  - 找到 `ifcfg-ens33` 文件，把 `onboot=no` 改成 `onboot=yes`
  - 通过 `service network restart` 重启网络即可
+
+## 命令找不到
+
+### ifconfig
+
+```shell
+sudo yum install net-tools
+```
