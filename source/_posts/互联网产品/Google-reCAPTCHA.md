@@ -2,7 +2,6 @@
 title: Google reCAPTCHA
 date: 2022-04-19 09:47:21
 tags: Google Product
-categories:
   - 互联网产品
   - Google Product
 ---

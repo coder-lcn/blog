@@ -2,8 +2,8 @@
 title: linux 端口管理
 date: 2020-05-23 12:13:10
 categories:
-  - Linux
-  - 基础操作
+  - 操作系统
+  - linux
 tags: linux
 ---
 
