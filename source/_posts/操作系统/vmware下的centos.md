@@ -1,5 +1,5 @@
 ---
-title: vmware下的centos系统配置
+title: vmware下的centos
 date: 2022-05-11 02:29:03
 categories:
   - 操作系统

@@ -3,7 +3,7 @@ title: 搭建 webpack 配置
 toc: true
 date: 2019-11-2 19:30:04
 categories:
-  - 前端
+  - NodeJS
   - webpack
 tags: webpack
 ---

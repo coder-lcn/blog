@@ -2,7 +2,7 @@
 title: 使用moment.js
 date: 2022-04-25 15:48:52
 categories:
-  - 前端
+  - NodeJS
   - 常用工具
 tags: 工具
 ---

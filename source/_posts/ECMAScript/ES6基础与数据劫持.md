@@ -2,8 +2,8 @@
 title: ES6基础与数据劫持
 date: 2021-03-26 13:42:52
 categories:
-  - 前端
-  - JavaScript
+  - ECMAScript
+  - es6
 tags: ECMAScript
 ---
 

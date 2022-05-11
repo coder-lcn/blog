@@ -2,11 +2,8 @@
 title: discord bot 开发入门
 date: 2022-04-21 09:57:53
 categories:
-  - 机器人脚本
-  - discord
-tags: 
-  - Discord
   - NodeJS
+tags: discord
 ---
 
 首先需要先知道的是，对于 discord 来说，bot 也是一个用户。也就意味着要使用 bot 开发之前，需要先登录上去。
