@@ -12,44 +12,6 @@ tags: nginx
 
 <!-- more -->
 
-## 默认配置
-
-```nginx
-user nginx;
-worker_processes 1;
-
-error_log /var/log/nginx/error.log warn;
-pid /var/run/nginx.pid;
-
-events {
-  worker_connections  1024;
-}
-
-http {
-  proxy_cache_path /opt/nginx/proxy_cache levels=1:2 keys_zone=content:20m inactive=1d max_size=100m;
-
-  include       /etc/nginx/mime.types;
-  default_type  application/octet-stream;
-
-  log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
-                    '$status $body_bytes_sent "$http_referer" '
-                    '"$http_user_agent" "$http_x_forwarded_for"';
-
-  # 日志文件
-  access_log  /var/log/nginx/access.log  main;
-
-  sendfile        on;
-  #tcp_nopush     on;
-
-  keepalive_timeout  65;
-
-  # 指定以 .conf 结尾的配置文件
-  include /etc/nginx/conf.d/*.conf;
-  # 指定目录下的任何文件为配置文件
-  include /etc/nginx/sites-enabled/*;
-}
-
-```
 
 ## 反向代理
 
