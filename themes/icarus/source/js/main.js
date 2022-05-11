@@ -83,9 +83,8 @@ moment.updateLocale = () => { }
 
     // 在 Github 上编辑此页---------------
     $('.edit-article').on('click', () => {
-        const paths = location.pathname.split('/');
-        paths.pop();
-        const fileName = paths.pop();
+        const [_, __, ___, ____, ...rest] = location.pathname.split('/');
+        const fileName = rest.filter(Boolean).join('/');
         const editUrl = `https://github.com/coder-lcn/blog/edit/main/source/_posts/${fileName}.md`;
         window.open(editUrl, '_blank');
     })
