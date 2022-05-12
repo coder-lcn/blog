@@ -12,3 +12,8 @@ date: 2020-03-23 10:17:20
 - Adobe 系列 https://www.bigzhong.com/
 - 集ssh和FTP于一体的工具 https://www.hostbuf.com/t/988.html
 - vmware 破解版https://www.ghxi.com/vmware15.html
+
+## 安装教程
+
+- mysql
+  - centos https://www.mysqltutorial.org/install-mysql-centos/
