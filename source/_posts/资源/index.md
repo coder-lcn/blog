@@ -16,4 +16,4 @@ date: 2020-03-23 10:17:20
 ## 安装教程
 
 - mysql
-  - centos https://dev.mysql.com/doc/refman/5.7/en/linux-installation.html
+  - centos https://juejin.cn/post/6844903870053761037
