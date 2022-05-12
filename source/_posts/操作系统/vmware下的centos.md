@@ -4,7 +4,7 @@ date: 2022-05-11 02:29:03
 categories:
   - 操作系统
   - centos
-tags: vmware
+tags: linux
 ---
 
 <div></div>
