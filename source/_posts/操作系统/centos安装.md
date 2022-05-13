@@ -38,34 +38,35 @@ Linux 上安装软件常见的几种方式：
 
 ##### 检查 MariaDB
 
-    shell> rpm -qa|grep mariadb
-    mariadb-server-5.5.60-1.el7_5.x86_64
-    mariadb-5.5.60-1.el7_5.x86_64
-    mariadb-libs-5.5.60-1.el7_5.x86_64
-    复制代码
+```shell
+rpm -qa|grep mariadb
+```
 
 ##### 删除 mariadb
 
 如果不存在（上面检查结果返回空）则跳过步骤
 
-    shell> rpm -e --nodeps mariadb-server
-    shell> rpm -e --nodeps mariadb
-    shell> rpm -e --nodeps mariadb-libs
-    复制代码
+```shell
+rpm -e --nodeps mariadb-server
+rpm -e --nodeps mariadb
+rpm -e --nodeps mariadb-libs
+```
 
 _其实 yum 方式安装是可以不用删除 mariadb 的，安装 MySQL 会覆盖掉之前已存在的 mariadb_
 
 ##### 检查 MySQL
 
-    shell> rpm -qa|grep mysql
-    复制代码
+```shell
+rpm -qa|grep mysql
+```
 
 ##### 删除 MySQL
 
 如果不存在（上面检查结果返回空）则跳过步骤
 
-    shell> rpm -e --nodeps xxx
-    复制代码
+```shell
+rpm -e --nodeps xxx
+```
 
 ### 1、添加 MySQL Yum Repository
 
@@ -77,24 +78,27 @@ _其实 yum 方式安装是可以不用删除 mariadb 的，安装 MySQL 会覆�
 
 查看系统版本：
 
-    shell> cat /etc/redhat-release
-    CentOS Linux release 7.6.1810 (Core)
-    复制代码
+```shell
+cat /etc/redhat-release
+```
 
 选择对应的版本进行下载，例如 CentOS 7 当前在官网查看最新 Yum 源的下载地址为： [dev.mysql.com/get/mysql80…](https://link.juejin.cn?target=https%3A%2F%2Fdev.mysql.com%2Fget%2Fmysql80-community-release-el7-3.noarch.rpm "https://dev.mysql.com/get/mysql80-community-release-el7-3.noarch.rpm")
 
-    shell> wget https://dev.mysql.com/get/mysql80-community-release-el7-3.noarch.rpm
-    复制代码
+```shell
+wget https://dev.mysql.com/get/mysql80-community-release-el7-3.noarch.rpm
+```
 
 ##### 安装 MySQL 源
 
-    shell> sudo rpm -Uvh platform-and-version-specific-package-name.rpm
-    复制代码
+```shell
+sudo rpm -Uvh platform-and-version-specific-package-name.rpm
+```
 
 例如 CentOS7 当前最新 MySQL 源安装：
 
-    shell> sudo rpm -Uvh mysql80-community-release-el7-3.noarch.rpm
-    复制代码
+```shell
+sudo rpm -Uvh mysql80-community-release-el7-3.noarch.rpm
+```
 
 ##### 检查是否安装成功
 
@@ -102,11 +106,9 @@ _其实 yum 方式安装是可以不用删除 mariadb 的，安装 MySQL 会覆�
 
 并且通过`yum repolist`可以看到 mysql 相关资源
 
-    shell> yum repolist enabled | grep "mysql.*-community.*"
-    !mysql-connectors-community/x86_64 MySQL Connectors Community                108
-    !mysql-tools-community/x86_64      MySQL Tools Community                      90
-    !mysql80-community/x86_64          MySQL 8.0 Community Server                113
-    复制代码
+```shell
+yum repolist enabled | grep "mysql.*-community.*"
+```
 
 ### 2、选择 MySQL 版本
 
@@ -114,49 +116,57 @@ _其实 yum 方式安装是可以不用删除 mariadb 的，安装 MySQL 会覆�
 
 ##### 查看当前 MySQL Yum Repository 中所有 MySQL 版本（每个版本在不同的子仓库中）
 
-    shell> yum repolist all | grep mysql
-    复制代码
+```shell
+yum repolist all | grep mysql
+```
 
 ##### 切换版本
 
-    shell> sudo yum-config-manager --disable mysql80-community
-    shell> sudo yum-config-manager --enable mysql57-community
-    复制代码
+```shell
+sudo yum-config-manager --disable mysql80-community
+sudo yum-config-manager --enable mysql57-community
+```
 
 除了使用 yum-config-manager 之外，还可以直接编辑`/etc/yum.repos.d/mysql-community.repo`文件
 
 enabled=0 禁用
 
-    [mysql80-community]
-    name=MySQL 8.0 Community Server
-    baseurl=http://repo.mysql.com/yum/mysql-8.0-community/el/7/$basearch/
-    enabled=0
-    gpgcheck=1
-    gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mysql
-    复制代码
+```yml
+[mysql80-community]
+name=MySQL 8.0 Community Server
+baseurl=http://repo.mysql.com/yum/mysql-8.0-community/el/7/$basearch/
+enabled=0
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mysql
+```
+
 
 enabled=1 启用
 
-    # Enable to use MySQL 5.7
-    [mysql57-community]
-    name=MySQL 5.7 Community Server
-    baseurl=http://repo.mysql.com/yum/mysql-5.7-community/el/7/$basearch/
-    enabled=1
-    gpgcheck=1
-    gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mysql
-    复制代码
+```yml
+# Enable to use MySQL 5.7
+[mysql57-community]
+name=MySQL 5.7 Community Server
+baseurl=http://repo.mysql.com/yum/mysql-5.7-community/el/7/$basearch/
+enabled=1
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mysql
+```
+
 
 ##### 检查当前启用的 MySQL 仓库
 
-    shell> yum repolist enabled | grep mysql
-    复制代码
+```shell
+yum repolist enabled | grep mysql
+```
 
 _如果同时启用了多个仓库，安装时会选择最新版本_
 
 ### 3、安装 MySQL
 
-    shell> sudo yum install mysql-community-server
-    复制代码
+```shell
+sudo yum install mysql-community-server
+```
 
 该命令会安装 MySQL 服务器 (mysql-community-server) 及其所需的依赖、相关组件，包括 mysql-community-client、mysql-community-common、mysql-community-libs 等
 
@@ -166,43 +176,51 @@ _如果同时启用了多个仓库，安装时会选择最新版本_
 
 ##### 启动
 
-    shell> sudo systemctl start mysqld.service
-    复制代码
+```shell
+sudo systemctl start mysqld.service
+```
 
 CentOS 6：
 
-    shell> sudo service mysqld start
-    复制代码
+```shell
+sudo service mysqld start
+```
 
 ##### 查看状态
 
-    shell> sudo systemctl status mysqld.service
-    复制代码
+```shell
+sudo systemctl status mysqld.service
+```
 
 CentOS 6：
 
-    shell> sudo service mysqld status
-    复制代码
+```shell
+sudo service mysqld status
+```
 
 ##### 停止
 
-    shell> sudo systemctl stop mysqld.service
-    复制代码
+```shell
+sudo systemctl stop mysqld.service
+```
 
 CentOS 6：
 
-    shell> sudo service mysqld stop
-    复制代码
+```shell
+sudo service mysqld stop
+```
 
 ##### 重启
 
-    shell> sudo systemctl restart mysqld.service
-    复制代码
+```shell
+sudo systemctl restart mysqld.service
+```
 
 CentOS 6：
 
-    shell> sudo service mysqld restart
-    复制代码
+```shell
+sudo service mysqld restart
+```
 
 ### 5、修改密码
 
@@ -210,17 +228,20 @@ CentOS 6：
 
 MySQL 第一次启动后会创建超级管理员账号`root@localhost`，初始密码存储在日志文件中：
 
-    shell> sudo grep 'temporary password' /var/log/mysqld.log
-    复制代码
+```shell
+sudo grep 'temporary password' /var/log/mysqld.log
+```
 
 ##### 修改默认密码
 
-    shell> mysql -uroot -p
-    复制代码
+```shell
+mysql -uroot -p
+```
 
-    mysql> ALTER USER 'root'@'localhost' IDENTIFIED BY '123456';
-    ERROR 1819 (HY000): Your password does not satisfy the current policy requirements
-    复制代码
+```mysql
+ALTER USER 'root'@'localhost' IDENTIFIED BY '123456';
+ERROR 1819 (HY000): Your password does not satisfy the current policy requirements
+```
 
 出现上面的提示是因为密码太简单了，解决方法如下：
 
@@ -228,37 +249,43 @@ MySQL 第一次启动后会创建超级管理员账号`root@localhost`，初始�
 2.  如果只是测试用，不想用那么复杂的密码，可以修改默认策略，即`validate_password_policy`（以及`validate_password_length`等相关参数），使其支持简单密码的设定，具体方法可以自行百度；
 3.  修改配置文件`/etc/my.cnf`，添加`validate_password=OFF`，保存并重启 MySQL
 
-    mysql> ALTER USER 'root'@'localhost' IDENTIFIED BY '123456';
-    Query OK, 0 rows affected (0.00 sec)
-    复制代码
+```mysql
+ALTER USER 'root'@'localhost' IDENTIFIED BY '123456';
+Query OK, 0 rows affected (0.00 sec)
+```
+
 
 ### 6、允许 root 远程访问
 
-    mysql> GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '123456' WITH GRANT OPTION;
-    mysql> FLUSH PRIVILEGES;
-    复制代码
+```mysql
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '123456' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+```
 
 ### 7、设置编码为 utf8
 
 ##### 查看编码
 
-    mysql> SHOW VARIABLES LIKE 'character%';
-    复制代码
+```mysql
+SHOW VARIABLES LIKE 'character%';
+```
 
 ##### 设置编码
 
 编辑/etc/my.cnf，\[mysqld\]节点增加以下代码：
 
-    [mysqld]
-    character_set_server=utf8
-    init-connect='SET NAMES utf8'
-    复制代码
+```yml
+[mysqld]
+character_set_server=utf8
+init-connect='SET NAMES utf8'
+```
 
 ### 8、设置开机启动
 
-    shell> systemctl enable mysqld
-    shell> systemctl daemon-reload
-    复制代码
+```shell
+systemctl enable mysqld
+systemctl daemon-reload
+```
 
 ## 二、RPM
 
