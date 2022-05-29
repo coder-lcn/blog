@@ -1,4 +1,7 @@
+window.cwd = '/Users/lichangnan/Project/blog';
 moment.updateLocale = () => { }
+
+const DEV = location.origin === 'http://localhost:4000';
 
 (function ($) {
     $('.article img:not(".not-gallery-item")').each(function () {
@@ -22,7 +25,7 @@ moment.updateLocale = () => { }
         // const navbarWidth = $('.navbar-main .navbar-start').outerWidth() + $('.navbar-main .navbar-end').outerWidth();
         var navbarWidth = $('.navbar-main .navbar-start').outerWidth() + $('.navbar-main .navbar-end').outerWidth();
         if ($(document).outerWidth() < navbarWidth) {
-            $('.navbar-main .navbar-menu').addClass('is-flex-start');
+            $('.navbar-main .navbar-menu').addClass('is-flex-stzart');
         } else {
             $('.navbar-main .navbar-menu').removeClass('is-flex-start');
         }
@@ -110,4 +113,19 @@ moment.updateLocale = () => { }
 
     $('.card.index').on('click', showDetail);
     // --------------------------
+
+    // 在 vscode 中打开文件
+    if (DEV) {
+        const githubEditButton = document.querySelector('.edit-article');
+        if (Boolean(githubEditButton) === false) return;
+
+        const [, , , , path1, path2, _] = location.pathname.split('/');
+
+        const openFileFromVscode = document.createElement('a');
+        openFileFromVscode.classList.add('vscode');
+        openFileFromVscode.href = `vscode://file${window.cwd}/source/_posts/${path1}/${path2}.md`;
+        openFileFromVscode.innerText = '在 vscode 中打开';
+
+        githubEditButton.after(openFileFromVscode);
+    }
 })(jQuery);
