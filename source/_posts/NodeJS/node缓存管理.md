@@ -31,13 +31,13 @@ import NodeCahe from "node-cache";
 //缓存时间 15分钟
 const time = 60 * 15;
 const cache = new NodeCache({
-  stdTTL: time,
-  checkperiod: time,
+  stdTTL: time, // 数据缓存时间（单位：秒）
+  checkperiod: time, // 缓存多久后删除数据（单位：秒）。设置 deleteOnExpire 为 false 会保留下来。
   useClones: false,
 });
 
 const getData = () => {
-  if (cache.get("user")) {
+  if (cache.has("user")) {
     // ...
   } else {
     // 查询 sql，更新缓存
@@ -45,5 +45,3 @@ const getData = () => {
   }
 };
 ```
-
-> 注意：缓存时间结束后，会自动删除掉，那么就 get 不到了
