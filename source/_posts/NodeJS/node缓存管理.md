@@ -37,7 +37,7 @@ const cache = new NodeCache({
 });
 
 const getData = () => {
-  if (cache.get("user")) { // 缓存时间结束后，会自动删除掉，那么就 get 不到了
+  if (cache.get("user")) {
     // ...
   } else {
     // 查询 sql，更新缓存
@@ -45,3 +45,5 @@ const getData = () => {
   }
 };
 ```
+
+> 注意：缓存时间结束后，会自动删除掉，那么就 get 不到了
