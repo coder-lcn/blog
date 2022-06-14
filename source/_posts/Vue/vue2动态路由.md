@@ -1,5 +1,5 @@
 ---
-title: vue2.x动态注入路由
+title: vue2的动态路由
 date: 2022-06-13 18:12:47
 categories:
   - Vue
