@@ -84,6 +84,6 @@ channel && channel.message.send("hello world");
 
 - 机器人通过 `channel.message.send` 发送的消息是有长度限制的，单条消息长度只有几百个字符
 - `interaction` 的按钮和下拉框控件的渲染个数非常有限。按钮最多支持五六个，下拉框只支持几十个
-  - 这个交互操作有一个很坑的问题，就是它的并发操作会被过滤掉，在页面上显示 `Unknown interaction` 的错误提示。实际情况是稍微几十个并发量，这个错误就极有可能出现。`issue` 来源https://github.com/discordjs/discord.js/issues/7005
+  - 这个交互操作有一个很坑的问题，就是它的并发操作会被过滤掉，在页面上显示 `Unknown interaction` 的错误提示。实际情况是稍微几十个并发量，这个错误就极有可能出现。`issue` 来源https://github.com/discordjs/discord.js/issues/7005【2022-06-16更新博客：似乎已经解决掉了】
 
 > 一旦发现有功能不能使用时，需要第一时间检查权限。机器人后台管理里，权限有两种，分别在 `OAuth2` 和 `Bot` 导航栏页面里。
