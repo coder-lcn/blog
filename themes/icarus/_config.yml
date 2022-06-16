@@ -144,12 +144,12 @@ widgets:
     # follow_link: 'https://github.com/thank037'
     # Links to be shown on the bottom of the profile widget
     social_links:
-        Github:
-            icon: fab fa-github
-            url: https://github.com/coder-lcn
-        Juejin:
-            customIcon: https://lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web/static/favicons/favicon-16x16.png
-            url: https://juejin.cn/user/4231379697012135
+        # Github:
+        #     icon: fab fa-github
+        #     url: https://github.com/coder-lcn
+        # Juejin:
+        #     customIcon: https://lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web/static/favicons/favicon-16x16.png
+        #     url: https://juejin.cn/user/4231379697012135
         # Facebook:
         #     icon: fab fa-facebook
         #     url: http://facebook.com
