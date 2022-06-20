@@ -3,7 +3,6 @@ title: ES6基础
 date: 2021-03-24 10:31:32
 categories:
   - ECMAScript
-  - es6
 tags: ECMAScript
 ---
 

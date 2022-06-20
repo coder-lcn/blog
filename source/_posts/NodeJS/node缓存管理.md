@@ -2,7 +2,7 @@
 title: NodeJS缓存管理
 date: 2022-06-06 16:14:35
 categories:
-  - Node
+  - NodeJS
   - 缓存
 tags: NodeJS
 ---

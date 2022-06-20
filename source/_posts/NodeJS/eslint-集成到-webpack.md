@@ -4,7 +4,6 @@ toc: true
 date: 2019-10-19 22:22:01
 categories:
   - NodeJS
-  - eslint
 tags: NodeJS
 ---
 

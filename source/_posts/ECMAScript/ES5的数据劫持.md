@@ -3,7 +3,6 @@ title: ES5的数据劫持
 date: 2021-03-26 13:42:52
 categories:
   - ECMAScript
-  - es5
 tags: ECMAScript
 ---
 
