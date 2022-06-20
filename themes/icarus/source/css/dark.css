@@ -101,6 +101,7 @@ body>.navbar {
 .gt-container .gt-header-preview,
 .searchbox .searchbox-container,
 .gt-header-controls,
+.content blockquote,
 .gt-comment-content {
   filter: invert(1) hue-rotate(180deg);
 }
