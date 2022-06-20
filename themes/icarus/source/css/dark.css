@@ -1,0 +1,29 @@
+html {
+  background-color: #000;
+}
+
+
+body>.navbar {
+  background-color: #3c3c3c;
+  box-shadow: 0 4px 10px rgb(0 0 0 / 5%);
+}
+
+
+.navbar-main .navbar-item {
+  color: #fff;
+}
+
+.navbar-main .navbar-item.is-active {
+  color: #83a5dd;
+}
+
+
+.navbar-main .navbar-item:hover {
+  background-color: #494848;
+  color: #83a5dd;
+}
+
+
+.card-content {
+  background-color: #241212;
+}
