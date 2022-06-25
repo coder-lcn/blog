@@ -17,3 +17,7 @@ date: 2020-03-23 10:17:20
 
 - mysql
   - centos https://juejin.cn/post/6844903870053761037
+
+## 实用工具
+
+- 表单自动生成 manifest 配置 https://app-manifest.firebaseapp.com/
