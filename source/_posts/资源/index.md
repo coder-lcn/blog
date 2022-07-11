@@ -21,3 +21,16 @@ date: 2020-03-23 10:17:20
 ## 实用工具
 
 - 表单自动生成 manifest 配置 https://app-manifest.firebaseapp.com/
+
+## 免费资源
+
+- 随机获取一张图片
+  - https://unsplash.it/1920/1080/?random
+  - https://api.ixiaowai.cn/gqapi/gqapi.php
+  - https://img.xjh.me/random_img.php?type=bg&ctype=nature
+  - https://source.unsplash.com/user/erondu/1920x1080
+  - http://lorempixel.com/1920/1080/
+  - https://picsum.photos/1920/1080
+  - https://uploadbeta.com/api/pictures/random/
+  - https://uploadbeta.com/api/pictures/random/?key…
+  - https://img.xjh.me/random_img.php
