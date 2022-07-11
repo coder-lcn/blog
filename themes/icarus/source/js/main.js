@@ -140,33 +140,87 @@ const DEV = location.origin === "http://localhost:4000";
 
   // 动态背景图 --------------------------
   (async () => {
-    return;
     if (window.innerWidth <= 768) return;
 
-    const bg = document.querySelector("section.section");
     const source = [
-      "https://unsplashs.it/1920/1080/?random",
-      "https://api.ixiaowai.cn/gqapi/gqapi.php",
-      "https://img.xjh.me/random_img.php?type=bg&ctype=nature",
+      "https://unsplash.it/1920/1080/?random",
       "https://source.unsplash.com/user/erondu/1920x1080",
       "https://picsum.photos/1920/1080",
-      "https://img.xjh.me/random_img.php",
     ];
 
-    let blob;
-
-    for await (const src of source) {
-      try {
-        const result = await fetch(src);
-        blob = await result.blob();
-        bg.style.backgroundImage = `url(${URL.createObjectURL(blob)})`;
-      } catch (error) {
-        console.log(src);
-        console.error(`加载${src}资源失败：` + error);
+    class Main {
+      setCache(src) {
+        return localStorage.setItem("background", src);
       }
+      getCache() {
+        return localStorage.getItem("background");
+      }
+      loadImage(src) {
+        return new Promise((resolve, reject) => {
+          const img = new Image();
+          img.src = src;
 
-      if (blob) break;
+          img.onload = () => {
+            resolve(src);
+          };
+
+          img.onerror = () => {
+            reject();
+          };
+        });
+      }
+      cacheImg = "";
+      container = null;
+      constructor() {
+        this.start();
+        this.container = document.querySelector("section.section");
+      }
+      async setNewImg() {
+        let imgSrc = "";
+
+        for await (const src of source) {
+          try {
+            const result = await fetch(src);
+            const blob = await result.blob();
+            imgSrc = URL.createObjectURL(blob);
+          } catch (error) {
+            console.log(src);
+            console.error(`加载${src}资源失败：` + error);
+          }
+
+          if (imgSrc) break;
+        }
+
+        this.setCache(imgSrc);
+
+        const src = await this.loadImage(imgSrc);
+        this.setCache(src);
+
+        return imgSrc;
+      }
+      setBackground(src) {
+        this.container.style.backgroundImage = `url(${src})`;
+      }
+      start() {
+        this.cacheImg = this.getCache();
+
+        if (this.cacheImg) {
+          this.loadImage(this.cacheImg)
+            .then((res) => {
+              this.setBackground(res);
+              this.setNewImg();
+            })
+            .catch(async () => {
+              const src = await this.setNewImg();
+              this.setBackground(src);
+            });
+        } else {
+          this.setNewImg();
+        }
+      }
     }
+
+    new Main();
   })();
 
   // -----------------------------------
