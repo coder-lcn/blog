@@ -1,131 +1,173 @@
-window.cwd = '/Users/lichangnan/blog';
-moment.updateLocale = () => { }
+window.cwd = "/Users/lichangnan/blog";
+moment.updateLocale = () => {};
 
-const DEV = location.origin === 'http://localhost:4000';
+const DEV = location.origin === "http://localhost:4000";
 
 (function ($) {
-    $('.article img:not(".not-gallery-item")').each(function () {
-        // wrap images with link and add caption if possible
-        if ($(this).parent('a').length === 0) {
-            $(this).wrap('<a class="gallery-item" href="' + $(this).attr('src') + '"></a>');
-            if (this.alt) {
-                $(this).after('<div class="has-text-centered is-size-6 has-text-grey caption">' + this.alt + '</div>');
-            }
-        }
+  $('.article img:not(".not-gallery-item")').each(function () {
+    // wrap images with link and add caption if possible
+    if ($(this).parent("a").length === 0) {
+      $(this).wrap(
+        '<a class="gallery-item" href="' + $(this).attr("src") + '"></a>'
+      );
+      if (this.alt) {
+        $(this).after(
+          '<div class="has-text-centered is-size-6 has-text-grey caption">' +
+            this.alt +
+            "</div>"
+        );
+      }
+    }
+  });
+
+  if (typeof moment === "function") {
+    $(".article-meta time").each(function () {
+      $(this).text(moment($(this).attr("datetime")).fromNow());
     });
+  }
 
-    if (typeof (moment) === 'function') {
-        $('.article-meta time').each(function () {
-            $(this).text(moment($(this).attr('datetime')).fromNow());
-        });
+  function adjustNavbar() {
+    // thank
+    // const navbarWidth = $('.navbar-main .navbar-start').outerWidth() + $('.navbar-main .navbar-end').outerWidth();
+    var navbarWidth =
+      $(".navbar-main .navbar-start").outerWidth() +
+      $(".navbar-main .navbar-end").outerWidth();
+    if ($(document).outerWidth() < navbarWidth) {
+      $(".navbar-main .navbar-menu").addClass("is-flex-stzart");
+    } else {
+      $(".navbar-main .navbar-menu").removeClass("is-flex-start");
+    }
+  }
+  adjustNavbar();
+  $(window).resize(adjustNavbar);
+
+  var $toc = $("#toc");
+  if ($toc.length > 0) {
+    var $mask = $("<div>");
+    $mask.attr("id", "toc-mask");
+
+    $("body").append($mask);
+
+    function toggleToc() {
+      $toc.toggleClass("is-active");
+      $mask.toggleClass("is-active");
     }
 
-    function adjustNavbar() {
-        // thank
-        // const navbarWidth = $('.navbar-main .navbar-start').outerWidth() + $('.navbar-main .navbar-end').outerWidth();
-        var navbarWidth = $('.navbar-main .navbar-start').outerWidth() + $('.navbar-main .navbar-end').outerWidth();
-        if ($(document).outerWidth() < navbarWidth) {
-            $('.navbar-main .navbar-menu').addClass('is-flex-stzart');
-        } else {
-            $('.navbar-main .navbar-menu').removeClass('is-flex-start');
-        }
+    $toc.on("click", toggleToc);
+    $mask.on("click", toggleToc);
+    $(".navbar-main .catalogue").on("click", toggleToc);
+  }
+
+  // 赞助二维码的显示隐藏-------------
+  $(".donate-container .card-content").on("click", function () {
+    const donate = this.querySelector(".buttons.is-centered");
+    donate.style.overflow = "hidden";
+    const height = donate.clientHeight;
+    donate.style.height = height ? "0px" : "38.5px";
+    donate.ontransitionend = () =>
+      (donate.style.overflow = height ? "hidden" : "initial");
+  });
+
+  $(".donate-container .card-content a").on("click", (e) => {
+    e.stopPropagation();
+  });
+  // --------------------
+
+  // 全局搜索快捷键---------------
+  window.onkeydown = (e) => {
+    const action = () => {
+      const searchElement = document.querySelector("a.navbar-item.search");
+      searchElement && searchElement.click();
+    };
+
+    // command + k
+    if (e.metaKey && e.key === "k") {
+      e.preventDefault();
+      action();
     }
-    adjustNavbar();
-    $(window).resize(adjustNavbar);
 
-    var $toc = $('#toc');
-    if ($toc.length > 0) {
-        var $mask = $('<div>');
-        $mask.attr('id', 'toc-mask');
-
-        $('body').append($mask);
-
-        function toggleToc() {
-            $toc.toggleClass('is-active');
-            $mask.toggleClass('is-active');
-        }
-
-        $toc.on('click', toggleToc);
-        $mask.on('click', toggleToc);
-        $('.navbar-main .catalogue').on('click', toggleToc);
+    if (e.ctrlKey && e.key === "k") {
+      e.preventDefault();
+      action();
     }
+  };
+  // --------------
 
-    // 赞助二维码的显示隐藏-------------
-    $('.donate-container .card-content').on('click', function () {
-        const donate = this.querySelector('.buttons.is-centered');
-        donate.style.overflow = "hidden";
-        const height = donate.clientHeight;
-        donate.style.height = height ? "0px" : '38.5px';
-        donate.ontransitionend = () => donate.style.overflow = height ? "hidden" : "initial";
+  // 在 Github 上编辑此页---------------
+  $(".edit-article").on("click", () => {
+    const [_, __, ___, ____, ...rest] = location.pathname.split("/");
+    const fileName = rest.filter(Boolean).join("/");
+    const editUrl = `https://github.com/coder-lcn/blog/edit/main/source/_posts/${fileName}.md`;
+    window.open(editUrl, "_blank");
+  });
+  // ---------------
+
+  // 在移动端，当搜索框出现时，阻止页面滚动
+  const target = document.getElementById("toc-mask");
+  const isMobile = /(iPhone|iPad|iPod|iOS|Android)/i.test(navigator.userAgent);
+  if (target && isMobile === true) {
+    const observer = new MutationObserver(() => {
+      const isShow = target.classList.contains("is-active");
+      document.documentElement.style.overflowY = isShow ? "hidden" : "scroll";
     });
+    observer.observe(target, { attributes: true });
+  }
+  // ----------------
 
-    $('.donate-container .card-content a').on('click', e => {
-        e.stopPropagation();
-    });
-    // --------------------
+  // 首页卡片单击，进入文章详情--------------------------
+  const showDetail = function () {
+    location.href = this.dataset.url;
+  };
 
-    // 全局搜索快捷键---------------
-    window.onkeydown = (e) => {
-        const action = () => {
-            const searchElement = document.querySelector('a.navbar-item.search');
-            searchElement && searchElement.click();
-        }
+  $(".card.index").on("click", showDetail);
+  // --------------------------
 
-        // command + k
-        if (e.metaKey && e.key === 'k') {
-            e.preventDefault();
-            action();
-        }
+  // 在 vscode 中打开文件
+  if (DEV) {
+    const githubEditButton = document.querySelector(".edit-article");
+    if (Boolean(githubEditButton) === false) return;
 
-        if (e.ctrlKey && e.key === 'k') {
-            e.preventDefault();
-            action();
-        }
+    const [, , , , path1, path2, _] = location.pathname.split("/");
+
+    const openFileFromVscode = document.createElement("a");
+    openFileFromVscode.classList.add("vscode");
+    openFileFromVscode.href = `vscode://file${window.cwd}/source/_posts/${path1}/${path2}.md`;
+    openFileFromVscode.innerText = "在 vscode 中打开";
+
+    githubEditButton.after(openFileFromVscode);
+  }
+  // --------------------------
+
+  // 动态背景图 --------------------------
+  (async () => {
+    return;
+    if (window.innerWidth <= 768) return;
+
+    const bg = document.querySelector("section.section");
+    const source = [
+      "https://unsplashs.it/1920/1080/?random",
+      "https://api.ixiaowai.cn/gqapi/gqapi.php",
+      "https://img.xjh.me/random_img.php?type=bg&ctype=nature",
+      "https://source.unsplash.com/user/erondu/1920x1080",
+      "https://picsum.photos/1920/1080",
+      "https://img.xjh.me/random_img.php",
+    ];
+
+    let blob;
+
+    for await (const src of source) {
+      try {
+        const result = await fetch(src);
+        blob = await result.blob();
+        bg.style.backgroundImage = `url(${URL.createObjectURL(blob)})`;
+      } catch (error) {
+        console.log(src);
+        console.error(`加载${src}资源失败：` + error);
+      }
+
+      if (blob) break;
     }
-    // --------------
+  })();
 
-    // 在 Github 上编辑此页---------------
-    $('.edit-article').on('click', () => {
-        const [_, __, ___, ____, ...rest] = location.pathname.split('/');
-        const fileName = rest.filter(Boolean).join('/');
-        const editUrl = `https://github.com/coder-lcn/blog/edit/main/source/_posts/${fileName}.md`;
-        window.open(editUrl, '_blank');
-    })
-    // ---------------
-
-    // 在移动端，当搜索框出现时，阻止页面滚动
-    const target = document.getElementById('toc-mask');
-    const isMobile = /(iPhone|iPad|iPod|iOS|Android)/i.test(navigator.userAgent)
-    if (target && isMobile === true) {
-        const observer = new MutationObserver(() => {
-            const isShow = target.classList.contains('is-active');
-            document.documentElement.style.overflowY = isShow ? 'hidden' : 'scroll';
-        });
-        observer.observe(target, { attributes: true })
-    }
-    // ----------------
-
-
-    // 首页卡片单击，进入文章详情--------------------------
-    const showDetail = function () {
-        location.href = this.dataset.url;
-    }
-
-    $('.card.index').on('click', showDetail);
-    // --------------------------
-
-    // 在 vscode 中打开文件
-    if (DEV) {
-        const githubEditButton = document.querySelector('.edit-article');
-        if (Boolean(githubEditButton) === false) return;
-
-        const [, , , , path1, path2, _] = location.pathname.split('/');
-
-        const openFileFromVscode = document.createElement('a');
-        openFileFromVscode.classList.add('vscode');
-        openFileFromVscode.href = `vscode://file${window.cwd}/source/_posts/${path1}/${path2}.md`;
-        openFileFromVscode.innerText = '在 vscode 中打开';
-
-        githubEditButton.after(openFileFromVscode);
-    }
+  // -----------------------------------
 })(jQuery);
