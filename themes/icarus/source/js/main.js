@@ -191,8 +191,6 @@ const DEV = location.origin === "http://localhost:4000";
           if (imgSrc) break;
         }
 
-        this.setCache(imgSrc);
-
         const src = await this.loadImage(imgSrc);
         this.setCache(src);
 
