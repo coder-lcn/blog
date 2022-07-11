@@ -29,8 +29,5 @@ date: 2020-03-23 10:17:20
   - https://api.ixiaowai.cn/gqapi/gqapi.php
   - https://img.xjh.me/random_img.php?type=bg&ctype=nature
   - https://source.unsplash.com/user/erondu/1920x1080
-  - http://lorempixel.com/1920/1080/
   - https://picsum.photos/1920/1080
-  - https://uploadbeta.com/api/pictures/random/
-  - https://uploadbeta.com/api/pictures/random/?key…
   - https://img.xjh.me/random_img.php
