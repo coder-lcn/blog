@@ -199,7 +199,11 @@ const DEV = location.origin === "http://localhost:4000";
       setBackground(src) {
         this.container.style.backgroundImage = `url(${src})`;
       }
-      start() {
+      async setNewBackground() {
+        const src = await this.setNewImg();
+        this.setBackground(src);
+      }
+      async start() {
         this.cacheImg = this.getCache();
 
         if (this.cacheImg) {
@@ -208,12 +212,11 @@ const DEV = location.origin === "http://localhost:4000";
               this.setBackground(res);
               this.setNewImg();
             })
-            .catch(async () => {
-              const src = await this.setNewImg();
-              this.setBackground(src);
+            .catch(() => {
+              this.setNewBackground();
             });
         } else {
-          this.setNewImg();
+          this.setNewBackground();
         }
       }
     }
