@@ -55,6 +55,12 @@ git stash
 git stash pop
 ```
 
+### 在没有提取之前，预览收藏
+
+```shell
+git stash show -p
+```
+
 后面可以追加一个索引序号，表示需要提取哪个收藏
 
 ### 删除收藏
