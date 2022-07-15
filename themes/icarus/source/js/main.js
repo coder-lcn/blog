@@ -1,4 +1,4 @@
-window.cwd = '/Users/lichangnan/blog';
+window.cwd = "/Users/lichangnan/blog";
 moment.updateLocale = () => {};
 
 const DEV = location.origin === "http://localhost:4000";
@@ -150,10 +150,10 @@ const DEV = location.origin === "http://localhost:4000";
 
     class Main {
       setCache(src) {
-        return localStorage.setItem("background", src);
+        return sessionStorage.setItem("background", src);
       }
       getCache() {
-        return localStorage.getItem("background");
+        return sessionStorage.getItem("background");
       }
       loadImage(src) {
         return new Promise((resolve, reject) => {
@@ -173,7 +173,10 @@ const DEV = location.origin === "http://localhost:4000";
       container = null;
       constructor() {
         this.start();
-        this.container = document.querySelector("section.section");
+        const target = document.querySelector("section.section");
+        this.container = document.createElement("div");
+        this.container.classList.add("bg");
+        target.append(this.container);
       }
       async setNewImg() {
         let imgSrc = "";
@@ -210,7 +213,6 @@ const DEV = location.origin === "http://localhost:4000";
           this.loadImage(this.cacheImg)
             .then((res) => {
               this.setBackground(res);
-              this.setNewImg();
             })
             .catch(() => {
               this.setNewBackground();
