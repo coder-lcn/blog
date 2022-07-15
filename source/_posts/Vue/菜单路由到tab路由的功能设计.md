@@ -51,9 +51,6 @@ const getRouter = (path: string) => {
 
   if (target) {
     return { label: target.name, pathname: target.pathName };
-  } else {
-    console.warn(`初始化 tab 路由失败，找不到 ${fullPath} 路径的路由配置`);
-    return false;
   }
 };
 
