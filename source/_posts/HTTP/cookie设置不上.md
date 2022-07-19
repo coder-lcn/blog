@@ -15,7 +15,7 @@ categories:
 - 项目需要在局域网环境运行，但是连接的接口服务是从外网来的。
 - 在调用登陆接口时，该接口的响应头会携带 `cookie` 过来，但是设置不上。`warning` 提示为：`this attempt to set a cookie via a set-cookie header was blocked because it had the secure`。
 
-## 分析
+## 分析解决
 
 因为这个 `cookie` 具备安全性，也就是需要 `ssl` 的支持。那么先在局域网生成一个证书来支持(参考：https://github.com/FiloSottile/mkcert)
 
