@@ -17,7 +17,7 @@ categories:
 
 ## 分析
 
-因为这个 `cookie` 具备安全性，也就是需要 `ssl` 的支持。那么先在局域网生成一个证书来支持（参考：https://github.com/FiloSottile/mkcert）
+因为这个 `cookie` 具备安全性，也就是需要 `ssl` 的支持。那么先在局域网生成一个证书来支持(参考：https://github.com/FiloSottile/mkcert)
 
 然后在本地的 `nginx` 服务上配置下 `ssl`
 
