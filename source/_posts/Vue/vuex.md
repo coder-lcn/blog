@@ -3,7 +3,7 @@ title: vuex的使用方法
 date: 2019-11-04 01:01:45
 categories:
   - Vue
-  - vuex
+  - 状态
 tags: 实践
 ---
 
