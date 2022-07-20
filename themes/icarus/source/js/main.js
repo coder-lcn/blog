@@ -1,4 +1,4 @@
-window.cwd = "/Users/lichangnan/blog";
+window.cwd = '/Users/lichangnan/blog';
 moment.updateLocale = () => {};
 
 const DEV = location.origin === "http://localhost:4000";
