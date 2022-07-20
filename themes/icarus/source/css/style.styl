@@ -302,9 +302,6 @@ img.thumbnail
         right: 0
         top: 0
 
-.is-overflow-x-auto
-    overflow-x: auto !important
-
 .is-flex-grow
     flex-grow: 1 !important
 
@@ -595,3 +592,17 @@ section.section
         background-size cover
         background-position center center
         z-index -1
+
+
+@media screen and (max-width: 768px)
+    .level-left
+        display grid !important
+        width 100%
+        grid-template-columns repeat(2, 50%)
+        grid-template-rows repeat(2, 50%)
+        .level-item
+            margin 0 !important
+            text-align right 
+            justify-content flex-end
+        .level-item:last-child
+            justify-content flex-start     
