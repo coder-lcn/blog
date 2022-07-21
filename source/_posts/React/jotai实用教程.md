@@ -1,5 +1,5 @@
 ---
-title: jotai使用教程
+title: jotai实用教程
 date: 2022-07-20 17:29:20
 categories:
   - React
@@ -85,6 +85,15 @@ const UpperMsg = atom(
 
 像这样定义好后，上面的 `setUpperMsg` 就可以生效了。不过因为 `UpperMsg` 依赖了 `msg`，只要 `msg` 变了，还是会先 `toUpperCase` 一下。所以在定义 `writable` 时，最好确认清楚，后续的 `UpperMsg` 不会因为 `msg` 的变化而变化。
 
+如果只是在第一次 `get` 时需要依赖 `msg` 的话，后面还是自己去 `set`，可以使用更便捷的工具方法
+
+```typescript
+import { atomWithDefault } from "jotai/utils";
+
+const msg = atom("");
+const UpperMsg = atomWithDefault((get) => get(msg).toUpperCase());
+```
+
 ### 异步调用
 
 ```typescript
@@ -99,6 +108,26 @@ const userInfoAtom = atom(async () => {
   const data = await fetch("/api/userInfo");
   return data;
 });
+```
+
+如果有多个异步的 `atom`，可以支持所有的异步 `atom` 取值完成
+
+```typescript
+import { waitForAll } from "jotai/utils";
+
+const dogsAtom = atom(async (get) => {
+  const response = await fetch("/dogs");
+  return await response.json();
+});
+
+const catsAtom = atom(async (get) => {
+  const response = await fetch("/cats");
+  return await response.json();
+});
+
+const App = () => {
+  const [dogs, cats] = useAtomValue(waitForAll([dogsAtom, catsAtom]));
+};
 ```
 
 ### Suspense 支持
@@ -126,6 +155,29 @@ const App = () => {
 
 上例中， `userInfoAtom` 是一个异步行为，在 `userInfo` 拿到请求后的值之前，就会一直展示 `fallback` 里的元素，更加智能化。
 
+如果希望手动的去管理这种状态，可以使用 `jotai/utils` 提供的 `loadable` 来处理
+
+```typescript
+import { loadable } from "jotai/utils"
+
+const asyncAtom = atom(async (get) => ...)
+const loadableAtom = loadable(asyncAtom)
+
+// 不需要再用 <Suspense> 来包裹了
+const Component = () => {
+  const value = useAtom(loadableAtom)
+
+  if (value.state === 'hasError') return <Text>{value.error}</Text>
+
+  if (value.state === 'loading') {
+    return <Text>Loading...</Text>
+  }
+
+  console.log(value.data) // 最终数据
+  return <Text>Value: {value.data}</Text>
+}
+```
+
 ### 持久化
 
 在官方提供的 `jotai/utils` 里，提供了相应持久化的处理方案，例如存到 `localStorage` 里的 `hook`
@@ -135,9 +187,113 @@ import { atomWithStorage } from "jotai/utils";
 const msg = atomWithStorage("msg", "");
 ```
 
+### reducer
+
+```typescript
+import { atom } from "jotai";
+import { useReducerAtom } from "jotai/utils";
+
+const countReducer = (prev, action) => {
+  if (action.type === "inc") return prev + 1;
+  if (action.type === "dec") return prev - 1;
+  throw new Error("unknown action type");
+};
+
+const countAtom = atom(0);
+
+const Counter = () => {
+  const [count, dispatch] = useReducerAtom(countAtom, countReducer);
+  return (
+    <div>
+      {count}
+      <button onClick={() => dispatch({ type: "inc" })}>+1</button>
+      <button onClick={() => dispatch({ type: "dec" })}>-1</button>
+    </div>
+  );
+};
+```
+
+### 分裂 atom
+
+当在处理一个 `list`，并且 `list` 里每一项都是个 `atom` 时，对这个列表的读取和修改的场景，这个功能就显得非常实用，官方 `demo` 如下：
+
+```typescript
+import { Provider, atom, useAtom, PrimitiveAtom } from "jotai";
+import { splitAtom } from "jotai/utils";
+
+const initialState = [
+  {
+    task: "help the town",
+    done: false,
+  },
+  {
+    task: "feed the dragon",
+    done: false,
+  },
+];
+
+const todosAtom = atom(initialState);
+// 分裂出新的 atom list
+const todoAtomsAtom = splitAtom(todosAtom);
+
+type TodoType = typeof initialState[number];
+
+const TodoItem = ({
+  todoAtom,
+  remove,
+}: {
+  todoAtom: PrimitiveAtom<TodoType>;
+  remove: () => void;
+}) => {
+  const [todo, setTodo] = useAtom(todoAtom);
+  return (
+    <div>
+      <input
+        value={todo.task}
+        onChange={(e) => {
+          setTodo((oldValue) => ({ ...oldValue, task: e.target.value }));
+        }}
+      />
+      <input
+        type="checkbox"
+        checked={todo.done}
+        onChange={() => {
+          setTodo((oldValue) => ({ ...oldValue, done: !oldValue.done }));
+        }}
+      />
+      <button onClick={remove}>remove</button>
+    </div>
+  );
+};
+
+const TodoList = () => {
+  // 下面 dispatch 的行为，就是 aplitAtom 赋能的，除了 remove，还有 insert 和 move */
+  const [todoAtoms, dispatch] = useAtom(todoAtomsAtom);
+
+  return (
+    <ul>
+      {todoAtoms.map((todoAtom) => (
+        <TodoItem
+          todoAtom={todoAtom}
+          remove={() => dispatch({ type: "remove", atom: todoAtom })}
+        />
+      ))}
+    </ul>
+  );
+};
+
+const App = () => (
+  <Provider>
+    <TodoList />
+  </Provider>
+);
+
+export default App;
+```
+
 ## 实现原理
 
-`atom` 里，每次调用会针对一个值，生成一个配置对象。结合 `weakMap` 建立一个索引关系，useAtom 内部还是依赖 `useState` 实现的，不同的是在定义值的时候，先使用 `weakMap` 拿到索引的 `atom` 的值，然后把相应的 `setState` 捆绑到对应的 `weakMap` 上。在修改值的时候，会先修改 weakMap 上的索引值，然后把捆绑上的所有 `setState` 循环执行一遍。
+`atom` 里，每次调用会针对一个值，生成一个配置对象。结合 `weakMap` 建立一个引用关系，useAtom 内部还是依赖 `useState` 实现的，不同的是在定义值的时候，先使用 `weakMap` 拿到引用的 `atom` 的值，然后把相应的 `setState` 捆绑到对应的 `weakMap` 上。在修改值的时候，会先修改 weakMap 上的引用值，然后把捆绑上的所有 `setState` 循环执行一遍。
 
 官方源码示例「初版」：
 
