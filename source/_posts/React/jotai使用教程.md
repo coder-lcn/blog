@@ -78,7 +78,7 @@ const msg = atom("");
 const UpperMsg = atom(
   (get) => get(msg).toUpperCase(),
   (get, set, newValue) => {
-    set(setUpperMsg, newValue);
+    set(UpperMsg, newValue);
   }
 );
 ```
