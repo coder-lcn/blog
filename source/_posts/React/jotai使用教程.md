@@ -57,7 +57,33 @@ const msg = atom("");
 const UpperMsg = atom((get) => get(msg).toUpperCase());
 ```
 
-`atom` 内部可以互相去取值，取的 `atom` 发生变化时，相应的使用到的 `atom` 也会变
+`atom` 内部可以互相去取值，取的 `atom` 发生变化时，相应的使用到的 `atom` 也会变。此时 `UpperMsg` 是通过依赖某个 `atom` 来取值的，如果要 `set`，像这样是行不通的：
+
+```typescript
+const App = () => {
+  const [upperMsg, setUpperMsg] = useAtom(upperMsg);
+
+  const onClick = () => {
+    // error: not writable atom
+    setUpperMsg("hello");
+  };
+};
+```
+
+如果想要继续 `set`，需要在 `get` 之后定义 `writable`，像这样
+
+```typescript
+const msg = atom("");
+
+const UpperMsg = atom(
+  (get) => get(msg).toUpperCase(),
+  (get, set, newValue) => {
+    set(setUpperMsg, newValue);
+  }
+);
+```
+
+像这样定义好后，上面的 `setUpperMsg` 就可以生效了。不过因为 `UpperMsg` 依赖了 `msg`，只要 `msg` 变了，还是会先 `toUpperCase` 一下。所以在定义 `writable` 时，最好确认清楚，后续的 `UpperMsg` 不会因为 `msg` 的变化而变化。
 
 ### 异步调用
 
